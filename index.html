@@ -137,20 +137,101 @@ section{padding:82px 20px}.wrap{max-width:980px;margin:auto}.kicker{text-align:c
 .music{position:fixed;bottom:24px;left:24px;border:1px solid #e5b7c3;border-radius:40px;padding:11px 18px;background:var(--wine);color:white;font-size:12px;z-index:99;box-shadow:0 4px 18px #32152133;transition:.25s}
 .music:hover{background:var(--wine2);transform:translateY(-2px)}
 
+/* ── Promises ── */
+.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.promise-card{background:var(--card);border:1px solid #f0dce1;border-radius:20px;padding:28px 22px;text-align:center;box-shadow:0 8px 28px #532b3b08;transition:.3s}
+.promise-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px #532b3b14}
+.promise-icon{font-size:36px;margin-bottom:14px}
+.promise-card h3{font:500 20px/1.3 'Playfair Display',serif;color:var(--wine);margin:0 0 10px}
+.promise-card p{font:italic 15px/1.8 'Playfair Display',serif;color:var(--muted);margin:0}
+
+/* ── Adventures ── */
+.adventures{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:10px}
+.adventure-card{border-radius:20px;overflow:hidden;position:relative;min-height:200px;display:flex;align-items:flex-end;padding:24px;box-shadow:0 8px 28px #532b3b12;transition:.3s;cursor:default}
+.adventure-card:hover{transform:translateY(-4px)}
+.adventure-card .adv-bg{position:absolute;inset:0;z-index:0}
+.adventure-card .adv-content{position:relative;z-index:1;color:#fff}
+.adventure-card .adv-icon{font-size:32px;display:block;margin-bottom:8px}
+.adventure-card h3{font:500 22px 'Playfair Display',serif;margin:0 0 6px;text-shadow:0 2px 8px #0004}
+.adventure-card p{font:italic 14px/1.7 'Playfair Display',serif;margin:0;color:#ffffffcc}
+
+/* ── Birthday wish ── */
+.wish-box{max-width:780px;margin:auto;background:linear-gradient(135deg,#3a1928,#24121d);border-radius:28px;padding:clamp(30px,6vw,60px);text-align:center;box-shadow:0 24px 60px #32152130;position:relative;overflow:hidden}
+.wish-box:before{content:'♡';position:absolute;top:16px;left:20px;font-size:80px;color:#ffffff06}
+.wish-box:after{content:'♡';position:absolute;bottom:16px;right:20px;font-size:80px;color:#ffffff06}
+.wish-box .wish-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#e9c6ce;margin-bottom:16px}
+.wish-box h2{font:500 clamp(28px,5vw,44px)/1.2 'Playfair Display',serif;color:#fff5f5;margin:0 0 20px}
+.wish-box h2 em{color:#efb9c6}
+.wish-box p{font:italic 18px/1.9 'Playfair Display',serif;color:#f0c5d0;max-width:600px;margin:0 auto 14px}
+.wish-box .wish-sign{font:italic 22px 'Playfair Display',serif;color:#dfc18c;margin-top:24px}
+
 /* ── Footer ── */
 .footer{text-align:center;padding:30px;color:#a7838e;font-size:12px;background:#f8e7eb}
 .note{font-size:12px;color:#9a7a84;text-align:center;margin-top:18px}
 .soft-note{max-width:700px;margin:26px auto 0;text-align:center;color:#987985;font:italic 16px/1.8 'Playfair Display',serif}
 
+/* ── Night mode ── */
+body.night{--blush:#0e0812;--ink:#f0dce4;--muted:#c9a0b0;--card:#1a0e18;--wine:#f4c2d0;--wine2:#e9a9b8}
+body.night{background:var(--blush);color:var(--ink)}
+body.night nav{background:#0e081299;border-bottom-color:#3a1928}
+body.night nav a{color:#d9bfc5}
+body.night nav a:hover{color:#e9a9b8}
+body.night .letter{background:#1a0e18;border-color:#3a1928}
+body.night .letter p{color:#e0c4cc}
+body.night .letter .salute{color:#e9a9b8}
+body.night .sign{color:#dfc18c}
+body.night section{background:var(--blush)!important}
+body.night .promise-card{background:#1a0e18;border-color:#3a1928}
+body.night .promise-card h3{color:#f4c2d0}
+body.night .promise-card p{color:#c9a0b0}
+body.night .final{background:#0e0812}
+body.night .final-box{background:#1a0e18;border-color:#3a1928}
+body.night .final-box h2{color:#f4c2d0}
+body.night .final-box p{color:#c9a0b0}
+body.night .footer{background:#0a060f;color:#7a5a65}
+body.night .reason{background:#1a0e18;border-color:#3a1928;color:#d9bfc5}
+body.night .title{color:#f4c2d0}
+body.night .kicker{color:#c9a0b0}
+body.night .intro{color:#b89aa4}
+body.night .moment h3{color:#f4c2d0}
+body.night .moment p{color:#b89aa4}
+body.night .moment .date{color:#c9a0b0}
+body.night #progress-bar{background:linear-gradient(90deg,#e9a9b8,#dfc18c,#f4c2d0)}
+
+/* ── Stars (night only) ── */
+.star{position:fixed;border-radius:50%;background:#fff;pointer-events:none;z-index:0;opacity:0;transition:opacity 1s ease;animation:twinkle ease-in-out infinite}
+body.night .star{opacity:1}
+@keyframes twinkle{0%,100%{opacity:.9;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+
+/* ── Shooting star ── */
+.shooting-star{position:fixed;width:2px;height:2px;background:#fff;border-radius:50%;pointer-events:none;z-index:1;opacity:0}
+body.night .shooting-star{animation:shoot 3s linear infinite}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(-45deg)}10%{opacity:1}100%{opacity:0;transform:translate(300px,300px) rotate(-45deg)}}
+
+/* ── Toggle button ── */
+#theme-toggle{position:fixed;top:60px;right:16px;z-index:98;background:var(--wine);border:none;border-radius:30px;padding:8px 16px;color:#fff;font-size:12px;display:flex;align-items:center;gap:6px;box-shadow:0 4px 18px #32152133;transition:.3s;white-space:nowrap}
+#theme-toggle:hover{transform:translateY(-2px);opacity:.9}
+.toggle-track{width:36px;height:20px;background:#ffffff30;border-radius:20px;position:relative;transition:.3s}
+.toggle-thumb{width:14px;height:14px;background:#fff;border-radius:50%;position:absolute;top:3px;left:3px;transition:.3s}
+body.night .toggle-track{background:#ffffff50}
+body.night .toggle-thumb{left:19px}
+
 /* ── Responsive ── */
-@media(max-width:700px){nav{gap:16px;overflow:auto;justify-content:flex-start;padding:13px 17px}.gallery{grid-template-columns:1fr 1fr}.photo{min-height:240px}.reasons{grid-template-columns:1fr 1fr}.hero p{font-size:14px}section{padding:68px 18px}}
-@media(max-width:460px){.gallery{grid-template-columns:1fr}.photo{min-height:320px}.reasons{grid-template-columns:1fr}}
+@media(max-width:700px){nav{gap:16px;overflow:auto;justify-content:flex-start;padding:13px 17px}.gallery{grid-template-columns:1fr 1fr}.photo{min-height:240px}.reasons{grid-template-columns:1fr 1fr}.hero p{font-size:14px}section{padding:68px 18px}.promises{grid-template-columns:1fr 1fr}.adventures{grid-template-columns:1fr}}
+@media(max-width:460px){.gallery{grid-template-columns:1fr}.photo{min-height:320px}.reasons{grid-template-columns:1fr}.promises{grid-template-columns:1fr}.adventures{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <!-- Progress bar -->
 <div id="progress-bar"></div>
+
+<!-- Day / Night toggle -->
+<button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle day and night mode">
+  <span id="theme-icon">🌙</span>
+  <span id="theme-label">Night</span>
+  <div class="toggle-track"><div class="toggle-thumb"></div></div>
+</button>
 
 <!-- Back to top -->
 <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
@@ -193,6 +274,11 @@ section{padding:82px 20px}.wrap{max-width:980px;margin:auto}.kicker{text-align:c
   <a href="#memories">Photos</a>
   <a href="#journey">Our journey</a>
   <a href="#reasons">Little things</a>
+  <a href="#promises">My promises</a>
+  <a href="#adventures">Adventures</a>
+  <a href="#wish">Make a wish</a>
+  <a href="#bday-wish">Birthday wish</a>
+</nav>
   <a href="#wish">Make a wish</a>
 </nav>
 
@@ -203,20 +289,42 @@ section{padding:82px 20px}.wrap{max-width:980px;margin:auto}.kicker{text-align:c
   <p class="intro">Some feelings are difficult to fit into a message. Still, I wanted to try — because you deserve to know how much this journey means to me.</p>
   <div class="letter">
     <p class="salute">My dearest Harshi, ❤️</p>
+
     <p>Happy birthday, Kotimari! 😄❤️</p>
-    <p>When I think about us, I smile at how unexpectedly our story began. We were just school benchmates for three or four years. Back then, I never imagined that the girl sitting beside me would become the person with whom I would dream of sharing my life.</p>
-    <p>I still remember that English exam day — the little sitting area behind the computer classroom, and the conversation we had there for more than an hour. It may have seemed like an ordinary school-day conversation, but today it is one of the few memories from those days that I can picture so clearly. If only that younger version of me knew where life would take us! 😊</p>
-    <p>After school, we went to different PU colleges and lost touch for a couple of years. Then, during my engineering days, I got your number from Kulli (Meghana) and sent you the first message. I had no idea that one small message would open such a big chapter in my life.</p>
-    <p>First we were friends, then best friends, and sometimes even little enemies! 😜 Somewhere along the way, without me knowing exactly when, my friendship turned into love. I gave you the nickname <em>Kotimari</em>, and on <strong>3 September 2019</strong>, I finally told you how I felt. You neither said yes nor no then, and life carried us into different chapters.</p>
-    <p>There were years when we hardly spoke. I would send my good-morning and good-night messages, try calling, and wonder what had changed. I didn't understand the silence, and I worried about you. I even reached out to Raaji and prakyathi because I wanted to know if you were okay. When I heard you had joined IBM, I was genuinely happy for you — even while I missed our conversations. I don't want to turn those years into blame. They were complicated years, and we were both finding our way through life.</p>
-    <p>I moved to Mysore for work and spent those days building my own path. Later, when I heard through Raaji that you had been facing health challenges, my first feeling was concern. We slowly started talking again — little messages, small updates, and bits of everyday life. Then, just as life sometimes does, our conversations became quiet again.</p>
-    <p>When I switched back to IT in January 2024, I never expected that Sanjay's wedding would bring us face to face again. But it did. We started talking once more. For a while we were simply friends, and I tried to let things move naturally. My feelings, though, had never disappeared. They had grown with time, along with me.</p>
-    <p>As the years passed, we changed. We grew up, took on responsibilities, faced career decisions and learned more about ourselves. I know I may not be the same boy you first knew — life changes all of us. But please don't mistake growing up for loving you less. My love isn't a copy of what it was in 2019; it has matured with everything life has taught me.</p>
-    <p>And then came <strong>20 October 2026</strong>, when you went to speak to your parents about us. I know that was a meaningful step, and I can only imagine the thoughts and feelings that came with it. I am grateful for the courage it takes to bring two lives and two families closer.</p>
-    <p>Harshi, this page isn't here to ask you for an answer, to remind you of difficult days, or to make you feel that you owe me anything. It is simply my way of saying: I remember our little beginnings, I value every chapter that brought us here, and I am happy that our paths found their way back to each other.</p>
-    <p>On your birthday, I wish you good health, peace, confidence, laughter, and all the happiness you deserve. May we keep learning each other, choosing kindness, laughing at our silly jokes, and making many more memories — one day at a time.</p>
-    <p>Happy birthday once again, my Harshi. I love you. ❤️</p>
-    <div class="sign">Yours, Basya ♡</div>
+
+    <p>27 November 1998 — the day you came into this world. And somewhere, without either of us knowing it, the universe was already writing a story that would one day bring us together. I am so glad it did.</p>
+
+    <p>Our story begins in a school classroom, where we shared the same bench for three or four years. Back then, you were just the girl sitting beside me — and I was just the boy sitting beside you. There were no grand feelings, no big conversations, just ordinary school days that I never thought I would carry with me for the rest of my life. But life has its own quiet way of planting seeds.</p>
+
+    <p>Of all the memories from those school years, there is one I have never forgotten. It was exam time — I believe it was the English exam. There was a small sitting area just behind the computer classroom, and that day you were there. I walked up and we started talking. One conversation turned into another, and before either of us noticed, more than an hour had passed. It was just a simple school-day chat, nothing extraordinary on the surface. But today, when I look back, that hour feels like the quiet beginning of everything. 😊</p>
+
+    <p>After school ended, we went to different PU colleges and lost touch completely. Two years passed without a single message. I joined engineering, and life moved forward in its usual way — new places, new people, new routines.</p>
+
+    <p>Then one day in 2017, I got your number from Kulli — Meghana — and I messaged you first. That one small message was the beginning of everything I never knew I was waiting for. We started talking, slowly at first, and then more and more. Friendship grew into something deeper without me even realising when it happened. We became friends, then best friends, sometimes little enemies too! 😜 You gave me laughter and warmth, and somewhere along the way — quietly, completely, without asking permission — I fell in love with you. That is when I gave you the nickname <em>Kothimari</em>.</p>
+
+    <p>On <strong>3 September 2019</strong>, I finally told you how I felt. You didn't say yes, and you didn't say no — and life moved on with that answer still unspoken between us. Our degrees ended. You went searching for a job in IT. I tried to pursue MTech, but that chapter didn't unfold the way I had hoped. And slowly, without warning, the conversations between us began to fade.</p>
+
+    <p>I don't fully understand what happened in those years. You stopped responding to my messages. My good morning texts went unanswered. My calls went unreturned. I wasn't angry — I was worried. I kept wondering if you were okay, if something had happened, if I had somehow done something wrong. I reached out to Raaji and Prakyathi trying to find some small piece of news about you. Prakyathi didn't respond, but Raaji became a friend to me through that time, and I am grateful for that. When I heard you had joined IBM, I was genuinely happy for you — even while I quietly missed you every single day.</p>
+
+    <p>I moved to Mysore for work. Two years passed. Life went on, but you were never far from my thoughts. When I decided to shift to IT, I thought of reaching out to you for advice — but I stopped myself. I didn't want to push. I wanted to give you space, even if giving you space meant carrying the silence alone.</p>
+
+    <p>Then, through Raaji, I heard you had been going through some health difficulties. My heart went straight to you. I reached out again, and this time, little by little, we started talking once more — small messages, small updates, quiet check-ins. It felt like breathing again. But just as things were finding a rhythm, the conversations grew quiet for a second time. You found a new job, life moved forward, and the distance returned.</p>
+
+    <p>I want to be honest with you, Harshi — I never once stopped loving you through any of it. Not through the silence, not through the distance, not through the times I didn't understand why things were the way they were. You gave me reasons, and I listened, even when the reasons didn't fully explain the ache I felt. I chose not to force anything. I chose to wait, because some things are worth waiting for.</p>
+
+    <p>And then came January 2024. I had switched back to IT. Sanjay's wedding brought us face to face again — whether it was fate, coincidence, or something quietly arranged by the universe, I will never know. But I choose to believe it meant something. We started talking again. For a whole year, things were gentle and careful — you were like a close friend, and I was like a boy who had never stopped loving you, trying to be patient without making you feel pressured.</p>
+
+    <p>I know you have sometimes felt that I have changed — that the love has faded, that I am not the same Basya you once knew. I want you to understand something: I haven't stopped loving you. I have simply grown. We both have. We are not the same people we were in 2019, and that is not a loss — that is life. The love I carry for you today is not a smaller version of what it was before. It is deeper, more patient, more real. It has been tested by years and silence and distance, and it is still here. That is not nothing, Kotimari. That is everything.</p>
+
+    <p>And then came <strong>20 October 2026</strong> — the day you went to speak to your parents about us. I know how much courage that takes. I know the weight of that conversation, the hopes and the nerves and the uncertainty it carries. Whatever happens next, I want you to know that I am grateful — grateful that you took that step, grateful that our story has brought us to this place, and grateful simply that you are in my life.</p>
+
+    <p>This page is not a reminder of the difficult chapters. It is not a request for anything. It is simply my way of saying: I remember everything, I value everything, and I would not trade a single page of our story — not even the hard ones — because every page led us here.</p>
+
+    <p>On your birthday, I wish you good health, deep peace, quiet confidence, and so much laughter. I wish you a year that is gentle with you, full of the things that make your eyes light up. And I hope, more than anything, that we get to keep writing this story together — one small, beautiful day at a time.</p>
+
+    <p>Happy birthday, my Harshi. I love you. Always. ❤️</p>
+
+    <div class="sign">Yours, always — Basya ♡</div>
   </div>
 </div></section>
 
@@ -270,7 +378,7 @@ section{padding:82px 20px}.wrap{max-width:980px;margin:auto}.kicker{text-align:c
   <div class="timeline">
     <div class="moment"><span class="dot"></span><div class="date">School days · the beginning</div><h3>Benchmates, for three or four years 🏫</h3><p>We shared the same classroom for years. I didn't know then that you would become such an important person in my life.</p></div>
     <div class="moment"><span class="dot"></span><div class="date">One school-day memory</div><h3>The English exam conversation ✨</h3><p>That little sitting area behind the computer classroom, and the conversation that went on for more than an hour. A small memory that stayed with me.</p></div>
-    <div class="moment"><span class="dot"></span><div class="date">After school · two years apart</div><h3>Different PU colleges, no contact</h3><p>Life took us to different places. I went on to engineering, and we lost touch for a while.</p></div>
+    <div class="moment"><span class="dot"></span><div class="date">After school · two years apart</div><h3>Different PU colleges, no contact</h3><p>Life took us to different places. I went on to diffrent college, and we lost touch for a while.</p></div>
     <div class="moment"><span class="dot"></span><div class="date">Engineering days · a new hello</div><h3>The first message 💬</h3><p>I got your number from Kulli (Meghana) and messaged you. Friendship began, then best-friend moments, teasing, little fights — and the nickname Kotimari!</p></div>
     <div class="moment"><span class="dot"></span><div class="date">19 July 2018</div><h3>A birthday story from you 🎂</h3><p>The first time you posted a birthday story for me. A small social-media moment that became a memory I still keep.</p></div>
     <div class="moment"><span class="dot"></span><div class="date">15 January 2019 · Mysore</div><h3>Our first meetup after reconnecting 🤍</h3><p>We met again in Mysore and took those first photographs together. A familiar face, a new memory.</p></div>
@@ -312,6 +420,99 @@ section{padding:82px 20px}.wrap{max-width:980px;margin:auto}.kicker{text-align:c
   <div class="cake-message" id="cakeMessage" aria-live="polite"></div>
 </div></section>
 
+<!-- Promises -->
+<section id="promises"><div class="wrap">
+  <div class="kicker">From my heart to yours</div>
+  <h2 class="title">My promises to you ♡</h2>
+  <p class="intro">These are not just words, Harshi. These are the things I mean with every part of me — today, tomorrow, and for every day after that.</p>
+  <div class="promises">
+    <div class="promise-card">
+      <div class="promise-icon">🛡️</div>
+      <h3>I will take care of you</h3>
+      <p>In big ways and small ones. On your hardest days and your easiest ones. Taking care of you will always be something I choose, every single day.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">🕊️</div>
+      <h3>I will be patient</h3>
+      <p>With your pace, your silences, your process. I will never rush you or pressure you. You deserve someone who waits — and I will always be that person for you.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">❤️</div>
+      <h3>I will always love you</h3>
+      <p>More than anyone else, more than yesterday, more than you can imagine. My love for you is not a feeling that comes and goes — it is a choice I make for you, every day.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">🤝</div>
+      <h3>I will stand by you</h3>
+      <p>Through every season — the good ones, the uncertain ones, the ones that test us. You will never have to face anything alone as long as I am here.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">😄</div>
+      <h3>I will make you smile</h3>
+      <p>Even on the days when smiling feels difficult. Finding little ways to bring joy to your day is something I will never stop trying to do, Kotimari.</p>
+    </div>
+    <div class="promise-card">
+      <div class="promise-icon">🌱</div>
+      <h3>I will grow with you</h3>
+      <p>Not just beside you, but together — learning, changing, building something that is entirely ours. Our story is still being written, and I am so glad I get to write it with you.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- Adventures -->
+<section style="background:#fff8f9" id="adventures"><div class="wrap">
+  <div class="kicker">Just the two of us</div>
+  <h2 class="title">Things I want us to do together 🌍</h2>
+  <p class="intro">A little list of the moments I am already looking forward to — the big adventures and the simple everyday ones, all with you beside me.</p>
+  <div class="adventures">
+    <div class="adventure-card">
+      <div class="adv-bg" style="background:linear-gradient(145deg,#4b2032,#9d6578)"></div>
+      <div class="adv-content">
+        <span class="adv-icon">🏍️</span>
+        <h3>Bike rides, just us</h3>
+        <p>Open roads, wind in the air, no destination in mind — just the two of us and wherever the road takes us.</p>
+      </div>
+    </div>
+    <div class="adventure-card">
+      <div class="adv-bg" style="background:linear-gradient(145deg,#21111b,#754052)"></div>
+      <div class="adv-content">
+        <span class="adv-icon">🌄</span>
+        <h3>Explore new places</h3>
+        <p>New cities, hidden roads, small towns with big stories. I want to discover the world with you, one trip at a time.</p>
+      </div>
+    </div>
+    <div class="adventure-card">
+      <div class="adv-bg" style="background:linear-gradient(145deg,#51283b,#d9b98e80,#946c70)"></div>
+      <div class="adv-content">
+        <span class="adv-icon">🌅</span>
+        <h3>Watch sunsets together</h3>
+        <p>Somewhere quiet, somewhere beautiful — just sitting together and watching the sky change colours. No rush, nowhere else to be.</p>
+      </div>
+    </div>
+    <div class="adventure-card">
+      <div class="adv-bg" style="background:linear-gradient(145deg,#3a1928,#b9798d)"></div>
+      <div class="adv-content">
+        <span class="adv-icon">☕</span>
+        <h3>Simple everyday moments</h3>
+        <p>Long drives with no map. Late evening chai. Random conversations that go on for hours. The ordinary days that quietly become the best ones.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- Birthday wish -->
+<section style="background:linear-gradient(150deg,#f8e7eb,#fff4f5)" id="bday-wish"><div class="wrap">
+  <div class="wish-box">
+    <div class="wish-tag">With all my love · 27 November 2026</div>
+    <h2>Happy Birthday,<br><em>Kothimari</em> ♡</h2>
+    <p>My wife. My love. My everything.</p>
+    <p>On this beautiful day, I want you to know something that I carry in my heart every single day — you are irreplaceable. Not just to me, but in this world. There is no one like you, Harshi. There never will be.</p>
+    <p>You are mine, and I am yours — then, now, and in every future that is still waiting for us. No distance, no silence, no amount of time will ever change that. Your Basya will always love you. Always.</p>
+    <p>Have the most beautiful birthday, Kotimari. You deserve every bit of happiness this world has to give. 🎂❤️</p>
+    <div class="wish-sign">— Your Basya, always ♡</div>
+  </div>
+</div></section>
+
 <!-- Final -->
 <section class="final"><div class="final-box">
   <div class="kicker">One last thing, Kotimari…</div>
@@ -325,9 +526,40 @@ section{padding:82px 20px}.wrap{max-width:980px;margin:auto}.kicker{text-align:c
 
 <!-- Music button -->
 <button class="music" id="musicButton" onclick="toggleMusic()" aria-label="Play or pause birthday music">♫ Play our song</button>
-<audio id="song" loop preload="none"><source src="assets/our-song.mp3" type="audio/mpeg"></audio>
+<audio id="song" loop preload="none"><source src="assets/Naa Ninage Nee Nanage (From _Maryade Prashne_).mp3" type="audio/mpeg"></audio>
 
 <script>
+/* ── Day / Night toggle ── */
+function toggleTheme(){
+  const isNight = document.body.classList.toggle('night');
+  document.getElementById('theme-icon').textContent = isNight ? '☀️' : '🌙';
+  document.getElementById('theme-label').textContent = isNight ? 'Day' : 'Night';
+  localStorage.setItem('theme', isNight ? 'night' : 'day');
+}
+
+/* ── Create stars ── */
+(function(){
+  for(let i = 0; i < 120; i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `width:${1+Math.random()*2.5}px;height:${1+Math.random()*2.5}px;top:${Math.random()*100}vh;left:${Math.random()*100}vw;animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*4}s`;
+    document.body.appendChild(s);
+  }
+  // shooting stars
+  for(let i = 0; i < 4; i++){
+    const ss = document.createElement('div');
+    ss.className = 'shooting-star';
+    ss.style.cssText = `top:${5+Math.random()*40}vh;left:${Math.random()*60}vw;animation-delay:${i*4+Math.random()*3}s;animation-duration:${2.5+Math.random()*2}s`;
+    document.body.appendChild(ss);
+  }
+  // restore saved theme
+  if(localStorage.getItem('theme') === 'night'){
+    document.body.classList.add('night');
+    document.getElementById('theme-icon').textContent = '☀️';
+    document.getElementById('theme-label').textContent = 'Day';
+  }
+})();
+
 /* ── Typewriter effect ── */
 (function(){
   const el = document.querySelector('#hero-heading em');
@@ -359,7 +591,7 @@ section{padding:82px 20px}.wrap{max-width:980px;margin:auto}.kicker{text-align:c
 
 /* ── Days counter (since first message in engineering days ~2015) ── */
 (function(){
-  const since = new Date('2015-01-01');
+  const since = new Date('2017-01-01');
   const today = new Date();
   const days = Math.floor((today - since) / 86400000);
   const el = document.getElementById('days-counter');
@@ -470,7 +702,7 @@ async function toggleMusic(){
       await audio.play();
       button.textContent = 'Ⅱ Pause our song';
     } catch(e){
-      button.textContent = '♫ Add our-song.mp3';
+      button.textContent = '♫ Tap again to play';
     }
   } else {
     audio.pause();
