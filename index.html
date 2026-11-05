@@ -216,6 +216,22 @@ body.night .shooting-star{animation:shoot 3s linear infinite}
 body.night .toggle-track{background:#ffffff50}
 body.night .toggle-thumb{left:19px}
 
+/* ── Photo carousel ── */
+.carousel-section{background:#1a0810;padding:80px 0;overflow:hidden}
+.carousel-section .kicker{color:#c9a0b0;text-align:center}
+.carousel-section .title{color:#f4c2d0;text-align:center;margin-bottom:40px}
+.carousel-track-wrap{position:relative;width:100%;overflow:hidden}
+.carousel-track{display:flex;transition:transform .6s cubic-bezier(.4,0,.2,1);will-change:transform}
+.carousel-slide{min-width:100%;position:relative;display:flex;justify-content:center;align-items:center;padding:0 20px}
+.carousel-slide img{max-height:72vh;max-width:90vw;width:auto;height:auto;border-radius:18px;object-fit:cover;box-shadow:0 24px 60px #00000055;display:block;user-select:none;pointer-events:none}
+.carousel-caption{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);background:#00000050;backdrop-filter:blur(8px);color:#f0dce4;font:italic 13px/1.5 'Playfair Display',serif;padding:8px 20px;border-radius:30px;white-space:nowrap;letter-spacing:.06em;opacity:.85}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:#ffffff15;border:1px solid #ffffff25;color:#fff;width:44px;height:44px;border-radius:50%;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:5;transition:.25s;backdrop-filter:blur(4px)}
+.carousel-btn:hover{background:#ffffff30;transform:translateY(-50%) scale(1.08)}
+.carousel-prev{left:16px}.carousel-next{right:16px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:24px}
+.carousel-dot{width:7px;height:7px;border-radius:50%;background:#ffffff30;border:none;cursor:pointer;transition:.3s}
+.carousel-dot.active{background:#e9a9b8;transform:scale(1.3)}
+
 /* ── Responsive ── */
 @media(max-width:700px){nav{gap:16px;overflow:auto;justify-content:flex-start;padding:13px 17px}.gallery{grid-template-columns:1fr 1fr}.photo{min-height:240px}.reasons{grid-template-columns:1fr 1fr}.hero p{font-size:14px}section{padding:68px 18px}.promises{grid-template-columns:1fr 1fr}.adventures{grid-template-columns:1fr}}
 @media(max-width:460px){.gallery{grid-template-columns:1fr}.photo{min-height:320px}.reasons{grid-template-columns:1fr}.promises{grid-template-columns:1fr}.adventures{grid-template-columns:1fr}}
@@ -276,6 +292,7 @@ body.night .toggle-thumb{left:19px}
   <a href="#reasons">Little things</a>
   <a href="#promises">My promises</a>
   <a href="#adventures">Adventures</a>
+  <a href="#gallery2">Our photos</a>
   <a href="#wish">Make a wish</a>
   <a href="#bday-wish">Birthday wish</a>
 </nav>
@@ -494,11 +511,30 @@ body.night .toggle-thumb{left:19px}
       <div class="adv-content">
         <span class="adv-icon">☕</span>
         <h3>Simple everyday moments</h3>
-        <p>Long drives with no map. Late evening chai. Random conversations that go on for hours. The ordinary days that quietly become the best ones.</p>
+        <p>Long drives with no map. Late evening talks. Random conversations that go on for hours. The ordinary days that quietly become the best ones.</p>
       </div>
     </div>
   </div>
 </div></section>
+
+<!-- Photo carousel -->
+<section class="carousel-section" id="gallery2">
+  <div class="kicker">just us ♡</div>
+  <h2 class="title" style="font:500 clamp(28px,5vw,42px) 'Playfair Display',serif;color:#f4c2d0;text-align:center;margin:8px 0 40px">A few frames I never want to forget</h2>
+  <div class="carousel-track-wrap">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="assets/IMG-20190115-WA0055-01.jpeg" alt=""><div class="carousel-caption">January 2019 · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/IMG_20190427_132439.jpg" alt=""><div class="carousel-caption">April 2019 · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/IMG-20250111-WA0016.jpg" alt=""><div class="carousel-caption">January 2025 · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/_DSC0709.JPG" alt=""><div class="carousel-caption">us · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/_DSC0719.JPG" alt=""><div class="carousel-caption">us · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/_DSC1225.JPG" alt=""><div class="carousel-caption">us · ♡</div></div>
+    </div>
+    <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)" aria-label="Previous">‹</button>
+    <button class="carousel-btn carousel-next" onclick="carouselMove(1)" aria-label="Next">›</button>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
 
 <!-- Birthday wish -->
 <section style="background:linear-gradient(150deg,#f8e7eb,#fff4f5)" id="bday-wish"><div class="wrap">
@@ -729,6 +765,49 @@ for(let i = 0; i < 24; i++){
   p.style.fontSize = (12 + Math.random() * 14) + 'px';
   document.querySelector('.hero').appendChild(p);
 }
+
+/* ── Photo carousel ── */
+(function(){
+  const track = document.getElementById('carouselTrack');
+  const dotsWrap = document.getElementById('carouselDots');
+  if(!track) return;
+  const slides = track.querySelectorAll('.carousel-slide');
+  let current = 0;
+  let autoTimer;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n){
+    current = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + current * 100 + '%)';
+    dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    resetAuto();
+  }
+
+  function resetAuto(){
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => goTo(current + 1), 4000);
+  }
+
+  window.carouselMove = (dir) => goTo(current + dir);
+
+  // touch swipe
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const diff = tx - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+  }, {passive:true});
+
+  resetAuto();
+})();
 </script>
 </body>
 </html>
