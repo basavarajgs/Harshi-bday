@@ -526,9 +526,9 @@ body.night .toggle-thumb{left:19px}
       <div class="carousel-slide"><img src="assets/IMG-20190115-WA0055-01.jpeg" alt=""><div class="carousel-caption">January 2019 · ♡</div></div>
       <div class="carousel-slide"><img src="assets/IMG_20190427_132439.jpg" alt=""><div class="carousel-caption">April 2019 · ♡</div></div>
       <div class="carousel-slide"><img src="assets/IMG-20250111-WA0016.jpg" alt=""><div class="carousel-caption">January 2025 · ♡</div></div>
-      <div class="carousel-slide"><img src="assets/_DSC0709.JPG" alt=""><div class="carousel-caption">us · ♡</div></div>
-      <div class="carousel-slide"><img src="assets/_DSC0719.JPG" alt=""><div class="carousel-caption">us · ♡</div></div>
-      <div class="carousel-slide"><img src="assets/_DSC1225.JPG" alt=""><div class="carousel-caption">us · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/_DSC0709.jpg" alt=""><div class="carousel-caption">us · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/_DSC0719.jpg" alt=""><div class="carousel-caption">us · ♡</div></div>
+      <div class="carousel-slide"><img src="assets/_DSC1225.jpg" alt=""><div class="carousel-caption">us · ♡</div></div>
     </div>
     <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)" aria-label="Previous">‹</button>
     <button class="carousel-btn carousel-next" onclick="carouselMove(1)" aria-label="Next">›</button>
@@ -622,7 +622,10 @@ function toggleTheme(){
   const m = today.getMonth() - bday.getMonth();
   if(m < 0 || (m === 0 && today.getDate() < bday.getDate())) age--;
   const el = document.getElementById('age-line');
-  if(el) el.textContent = 'Today you turn ' + age + ' years old — and every year makes you more wonderful ✨';
+  const isBirthday = today.getMonth() === bday.getMonth() && today.getDate() === bday.getDate();
+  if(el) el.textContent = isBirthday
+    ? 'Today you turn ' + age + ' years old — and every year makes you more wonderful ✨'
+    : 'You are ' + age + ' years old — and every year makes you more wonderful ✨';
 })();
 
 /* ── Days counter (since first message in engineering days ~2015) ── */
